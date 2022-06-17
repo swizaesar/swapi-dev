@@ -1,12 +1,12 @@
 import React from "react";
-import HomePage from "../components/pages/home";
 import Layout from "../components/layout";
+import FilmsPage from "../components/pages/films";
 
-const Home = () => {
+const Films = () => {
     return (
         <Layout>
-            <HomePage />
+            <FilmsPage />
         </Layout>
     );
 };
-export default Home;
+export default Films;

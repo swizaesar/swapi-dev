@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "reactstrap";
-import { listHome } from "../../utils/Helpers";
-import CardName from "../card/cardName";
+import { listHome } from "../../../utils/Helpers";
+import CardName from "../../card/cardName";
 const HomePage = () => {
     return (
         <div>

@@ -1,12 +1,12 @@
 import React from "react";
-import HomePage from "../components/pages/home";
 import Layout from "../components/layout";
+import PeoplePage from "../components/pages/people";
 
-const Home = () => {
+const People = () => {
     return (
         <Layout>
-            <HomePage />
+            <PeoplePage />
         </Layout>
     );
 };
-export default Home;
+export default People;

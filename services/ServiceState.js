@@ -1,5 +1,5 @@
 // Global State
 const serviceState = {
-    starship: false,
+    starships: false,
 };
 export default serviceState;
