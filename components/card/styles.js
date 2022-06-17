@@ -17,6 +17,7 @@ export const CardNameStyle = styled(Card)`
     border-radius: 20px;
 `;
 export const CardStarShipStyle = styled(Card)`
+    border: unset;
     position: relative;
     margin-bottom: calc(var(--bs-gutter-x) * 0.5 * 2);
     max-height: 175px;
@@ -40,6 +41,7 @@ export const CardStarShipStyle = styled(Card)`
     }
 `;
 export const CardPlanetStyle = styled(Card)`
+    border: unset;
     position: relative;
     margin-bottom: calc(var(--bs-gutter-x) * 0.5 * 2);
     max-height: 175px;

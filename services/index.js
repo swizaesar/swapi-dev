@@ -1,15 +1,32 @@
 import serviceState from "./ServiceState";
-
-// Global state (for save global state)
-const stateRedux = (state, action) => {
+const types = {
+    SUCCESS: 200,
+    CREATED: 201,
+    CLEAR: "CLEAR",
+};
+const resultRedux = (state, action) => {
     return {
-        // last any state
         ...state,
-        // action.key is state name : action is value state
         [action.key]: { ...action },
     };
 };
-// for save Global state
+// Global state (for save global state)
+const stateRedux = (state, action) => {
+    switch (action.type) {
+        case types.SUCCESS:
+            return resultRedux(state, action);
+        case types.CREATED:
+            return resultRedux(state, action);
+        case types.CLEAR:
+            return {
+                ...state,
+                [action.key]: false,
+            };
+        default:
+            return state;
+    }
+};
+// State Store
 const serviceRedux = (state = serviceState, action = () => {}) => {
     return stateRedux(state, action);
 };

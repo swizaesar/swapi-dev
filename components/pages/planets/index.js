@@ -4,6 +4,7 @@ import { Container, Row, Col } from "reactstrap";
 import fetchApi from "../../../services/fetchApi";
 import CardPlanet from "../../card/cardPlanet";
 import SkeletonLoading from "../../skeleton";
+import Style from "./style";
 const PlanetsPage = () => {
     const dispatch = useDispatch();
     const state = useSelector((state) => state);
@@ -18,7 +19,7 @@ const PlanetsPage = () => {
         }
     }, [state]);
     return (
-        <div>
+        <Style>
             <Container>
                 <h2 className="title">Planets</h2>
                 <div>
@@ -50,7 +51,7 @@ const PlanetsPage = () => {
                     </Row>
                 </div>
             </Container>
-        </div>
+        </Style>
     );
 };
 export default PlanetsPage;

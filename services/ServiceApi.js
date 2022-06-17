@@ -12,7 +12,7 @@ const serviceApi = async (options) => {
                 success: true,
                 error: false,
                 key: options.key,
-                type: "success",
+                type: res.status,
             };
         })
         .catch((err) => {
@@ -21,7 +21,7 @@ const serviceApi = async (options) => {
                 success: false,
                 error: true,
                 key: options.key,
-                type: "error",
+                type: err.status,
             };
         });
 };
@@ -38,11 +38,19 @@ const fetchApi = async (dispatch, value) => {
         });
     }
 };
+// Remove Redux state
+const clearData = (dispatch, value) => {
+    dispatch(value);
+};
 // Service Action Type
 const serviceAction = (dispatch) => ({
     // Fetch API Type
     fetchApi: (value) => {
         fetchApi(dispatch, value);
+    },
+    // Clear State Redux
+    reduxClear: (value) => {
+        clearData(dispatch, value);
     },
 });
 export default serviceAction;

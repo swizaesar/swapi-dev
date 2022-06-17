@@ -59,18 +59,41 @@ const Style = styled(Button)`
             props.color === "primary"
                 ? color.primary
                 : props.color === "outline-primary"
-                ? "#fff"
+                ? color.secondary
                 : props.color};
         border: ${(props) =>
             props.color === "primary"
                 ? `1px solid ${color.primary}`
                 : props.color === "outline-primary"
-                ? "1px solid  #fff"
+                ? `1px solid  ${color.primary}`
                 : `1px solid  ${props.color}`};
         opacity: 0.8;
         outline: unset;
         box-shadow: unset;
         transform: translateY(-1px);
+    }
+    &:disabled {
+        color: ${(props) =>
+            props.color === "primary"
+                ? "#fff"
+                : props.color === "outline-primary"
+                ? color.primary
+                : "#fff"};
+        background: ${(props) =>
+            props.color === "primary"
+                ? color.primary
+                : props.color === "outline-primary"
+                ? color.secondary
+                : props.color};
+        border: ${(props) =>
+            props.color === "primary"
+                ? `1px solid ${color.primary}`
+                : props.color === "outline-primary"
+                ? `1px solid  ${color.primary}`
+                : `1px solid  ${props.color}`};
+        opacity: 0.4;
+        outline: unset;
+        box-shadow: unset;
     }
 `;
 export default Style;
