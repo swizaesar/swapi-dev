@@ -5,6 +5,10 @@ export default function Document() {
         <Html>
             <Head>
                 <link rel="shortcut icon" href="/logo.png" />
+                <script
+                    src="https://kit.fontawesome.com/1be1e42c40.js"
+                    crossorigin="anonymous"
+                ></script>
             </Head>
             <title>Swapi Dev</title>
             <body>

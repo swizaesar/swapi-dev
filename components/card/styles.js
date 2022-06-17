@@ -16,3 +16,49 @@ export const CardNameStyle = styled(Card)`
     background-color: ${color.secondary};
     border-radius: 20px;
 `;
+export const CardStarShipStyle = styled(Card)`
+    position: relative;
+    margin-bottom: calc(var(--bs-gutter-x) * 0.5 * 2);
+    max-height: 175px;
+    overflow: hidden;
+    .starship {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        &-info {
+            &__name {
+                color: ${color.primary};
+            }
+        }
+    }
+`;
+export const CardPlanetStyle = styled(Card)`
+    position: relative;
+    margin-bottom: calc(var(--bs-gutter-x) * 0.5 * 2);
+    max-height: 175px;
+    overflow: hidden;
+    .planet {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        &-info {
+            &__name {
+                color: ${color.primary};
+            }
+        }
+    }
+`;
