@@ -7,7 +7,6 @@ const Pagination = ({
     disableNext = false,
     handleChangePage = () => {},
 }) => {
-    console.log(disablePrev, disableNext);
     const [page, setPage] = React.useState(1);
     const onClickPage = (key) => {
         if (key === "prev") {
@@ -28,14 +27,14 @@ const Pagination = ({
                 color="outline-primary"
                 className="prev"
                 disabled={disablePrev}
-                size={18}
+                size={"18px"}
                 onClick={() => onClickPage("prev")}
             >
                 Prev
             </Button>
             <Button
                 disabled={disableNext}
-                size={18}
+                size={"18px"}
                 color="outline-primary"
                 onClick={() => onClickPage("next")}
             >

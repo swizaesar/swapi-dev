@@ -33,5 +33,21 @@ const fetchApi = {
             key: "films",
         });
     },
+
+    // DETAIL
+    getStarShipDetail: ({ dispatch, slug }) => {
+        serviceAction(dispatch).fetchApi({
+            url: `/starships/${slug}`,
+            method: "GET",
+            key: "starshipDetail",
+        });
+    },
+    getInfoDetail: ({ dispatch, slug, key }) => {
+        serviceAction(dispatch).fetchApi({
+            url: `${slug}`,
+            method: "GET",
+            key: `info_${key}`,
+        });
+    },
 };
 export default fetchApi;

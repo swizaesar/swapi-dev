@@ -3,7 +3,6 @@ import { CardPlanetStyle } from "./styles";
 import Button from "../button";
 
 const CardPlanet = ({ planet }) => {
-    console.log(planet, "planets");
     return (
         <CardPlanetStyle>
             <img

@@ -3,8 +3,7 @@ import { CardStarShipStyle } from "./styles";
 import Button from "../button";
 import Rating from "../rating";
 
-const CardStarShip = ({ starship }) => {
-    console.log(starship);
+const CardStarShip = ({ starship, action = () => {} }) => {
     return (
         <CardStarShipStyle>
             <img
@@ -27,7 +26,11 @@ const CardStarShip = ({ starship }) => {
                     <Rating rating={starship.hyperdrive_rating} />
                 </div>
                 <div className="starship-action">
-                    <Button size={16} color="outline-primary">
+                    <Button
+                        onClick={() => action(starship.url)}
+                        size={"16px"}
+                        color="outline-primary"
+                    >
                         More Info
                     </Button>
                 </div>

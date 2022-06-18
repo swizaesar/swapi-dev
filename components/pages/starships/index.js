@@ -1,14 +1,17 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Container, Row, Col } from "reactstrap";
+import { useRouter } from "next/router";
 import fetchApi from "../../../services/fetchApi";
 import reduxClear from "../../../services/reduxClear";
 import CardStarShip from "../../card/cardStarShip";
 import Pagination from "../../pagination";
 import SkeletonLoading from "../../skeleton";
-import Style from "./style";
+import { Style } from "./style";
+import GetPathUrl from "../../../utils/getPathUrl";
 const StarShipsPage = () => {
     const dispatch = useDispatch();
+    const router = useRouter();
     const state = useSelector((state) => state);
     const [disablePagination, setDisablePagination] = React.useState({
         next: false,
@@ -23,13 +26,16 @@ const StarShipsPage = () => {
         });
         fetchApi.getStarShipList({ dispatch, params });
     };
+    const handleShowDetail = (url) => {
+        let asPath = GetPathUrl(url);
+        router.push(asPath);
+    };
     React.useEffect(() => {
         fetchApi.getStarShipList({ dispatch });
     }, [dispatch]);
     React.useEffect(() => {
         if (state?.starships?.isSuccess) {
             setStarShips(state.starships.data.results);
-            console.log(state.starships.data, "asdasd");
             setDisablePagination({
                 next: state.starships.data.next !== null ? false : true,
                 prev: state.starships.data.previous !== null ? false : true,
@@ -37,7 +43,6 @@ const StarShipsPage = () => {
             reduxClear.starShipClear({ dispatch });
         }
     }, [state, dispatch]);
-    console.log(starShips);
     return (
         <Style>
             <Container>
@@ -55,7 +60,10 @@ const StarShipsPage = () => {
                             starShips.map((item, key) => {
                                 return (
                                     <Col sm={12} key={key}>
-                                        <CardStarShip starship={item} />
+                                        <CardStarShip
+                                            action={handleShowDetail}
+                                            starship={item}
+                                        />
                                     </Col>
                                 );
                             })

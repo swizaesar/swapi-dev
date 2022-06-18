@@ -13,7 +13,7 @@ const Style = styled(Button)`
         props.color === "primary"
             ? color.primary
             : props.color === "outline-primary"
-            ? color.secondary
+            ? "#000000"
             : props.color};
     border: ${(props) =>
         props.color === "primary"
@@ -38,7 +38,7 @@ const Style = styled(Button)`
             props.color === "primary"
                 ? color.primary
                 : props.color === "outline-primary"
-                ? color.secondary
+                ? "#000000"
                 : props.color};
         border: ${(props) =>
             props.color === "primary"
@@ -59,7 +59,7 @@ const Style = styled(Button)`
             props.color === "primary"
                 ? color.primary
                 : props.color === "outline-primary"
-                ? color.secondary
+                ? "#000000"
                 : props.color};
         border: ${(props) =>
             props.color === "primary"
@@ -83,7 +83,7 @@ const Style = styled(Button)`
             props.color === "primary"
                 ? color.primary
                 : props.color === "outline-primary"
-                ? color.secondary
+                ? "#000000"
                 : props.color};
         border: ${(props) =>
             props.color === "primary"
