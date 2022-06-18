@@ -33,10 +33,33 @@ export const CardStarShipStyle = styled(Card)`
         display: flex;
         justify-content: space-between;
         align-items: end;
+
         &-info {
             &__name {
                 color: ${color.primary};
             }
+        }
+        @media (max-width: 400px) {
+            &-info {
+                &__more {
+                    font-size: 12px;
+                }
+                &__name {
+                    font-size: 16px;
+                }
+            }
+            &-action {
+                button {
+                    font-size: 12px;
+                    width: max-content;
+                }
+            }
+        }
+    }
+    @media (max-width: 400px) {
+        height: 175px;
+        img {
+            display: none;
         }
     }
 `;
@@ -62,6 +85,22 @@ export const CardPlanetStyle = styled(Card)`
                 color: ${color.primary};
             }
         }
+        @media (max-width: 400px) {
+            &-info {
+                &__more {
+                    font-size: 12px;
+                }
+                &__name {
+                    font-size: 16px;
+                }
+            }
+            &-action {
+                button {
+                    font-size: 12px;
+                    width: max-content;
+                }
+            }
+        }
     }
 `;
 export const CardPeopleStyle = styled(Card)`
@@ -84,6 +123,22 @@ export const CardPeopleStyle = styled(Card)`
         &-info {
             &__name {
                 color: ${color.primary};
+            }
+        }
+        @media (max-width: 400px) {
+            &-info {
+                &__more {
+                    font-size: 12px;
+                }
+                &__name {
+                    font-size: 16px;
+                }
+            }
+            &-action {
+                button {
+                    font-size: 12px;
+                    width: max-content;
+                }
             }
         }
     }
@@ -123,22 +178,21 @@ export const CardFilmStyle = styled(Card)`
                 padding: 20px;
             }
         }
-    }
-    /* .film {
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        background-color: rgba(0, 0, 0, 0.7);
-        padding: 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: end;
-        &-info {
-            &__name {
-                color: ${color.primary};
+        @media (max-width: 400px) {
+            &-info {
+                &__more {
+                    font-size: 12px;
+                }
+                &__name {
+                    font-size: 16px;
+                }
+            }
+            &-action {
+                button {
+                    font-size: 12px;
+                    width: max-content;
+                }
             }
         }
-    } */
+    }
 `;

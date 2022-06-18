@@ -6,8 +6,12 @@ import HeaderStyle from "./style";
 
 const Header = () => {
     const router = useRouter();
+    const [isShow, setShow] = React.useState(false);
+    const onShowSidebar = () => {
+        setShow(!isShow);
+    };
     return (
-        <HeaderStyle>
+        <HeaderStyle isShow={isShow}>
             <div className="header">
                 <Link href={"/"}>
                     <a>
@@ -18,25 +22,33 @@ const Header = () => {
                         />
                     </a>
                 </Link>
-                <ul className="header-nav">
-                    {listHome.map((item, key) => {
-                        return (
-                            <li key={key}>
-                                <Link href={item.url}>
-                                    <a
-                                        className={`header-nav__menu ${
-                                            router.asPath === item.url
-                                                ? "active"
-                                                : ""
-                                        }`}
-                                    >
-                                        {item.name}
-                                    </a>
-                                </Link>
-                            </li>
-                        );
-                    })}
-                </ul>
+                <div className={`nav`}>
+                    <ul className="header-nav">
+                        {listHome.map((item, key) => {
+                            return (
+                                <li key={key}>
+                                    <Link href={item.url}>
+                                        <a
+                                            className={`header-nav__menu ${
+                                                router.asPath === item.url
+                                                    ? "active"
+                                                    : ""
+                                            }`}
+                                        >
+                                            {item.name}
+                                        </a>
+                                    </Link>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </div>
+                <div className="header-sidebar">
+                    <i
+                        className={`${isShow ? "fa fa-close" : "fas fa-bars"}`}
+                        onClick={onShowSidebar}
+                    ></i>
+                </div>
             </div>
         </HeaderStyle>
     );

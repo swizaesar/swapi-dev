@@ -9,6 +9,7 @@ export const Style = styled.div`
     }
 `;
 export const DetailStyle = styled.div`
+    margin-bottom: 30px;
     .back {
         margin-bottom: 30px;
         font-size: 18px;
@@ -52,6 +53,12 @@ export const DetailStyle = styled.div`
             &__desc {
                 margin-bottom: 20px;
                 text-align: center;
+            }
+            @media (max-width: 400px) {
+                font-size: 14px;
+                &__value {
+                    font-size: 12px;
+                }
             }
         }
     }

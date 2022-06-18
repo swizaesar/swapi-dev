@@ -14,13 +14,13 @@ const CardStarShip = ({ starship, action = () => {} }) => {
             <div className="starship">
                 <div className="starship-info">
                     <h3 className="starship-info__name">{starship.name}</h3>
-                    <div className="starship-info__manufacture">
+                    <div className="starship-info__more">
                         Manufacture - {starship.manufacturer}
                     </div>
-                    <div className="starship-info__model">
+                    <div className="starship-info__more">
                         Model - {starship.model}
                     </div>
-                    <div className="starship-info__class">
+                    <div className="starship-info__more">
                         Class - {starship.starship_class}
                     </div>
                     <Rating rating={starship.hyperdrive_rating} />
