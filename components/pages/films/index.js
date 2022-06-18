@@ -14,8 +14,8 @@ const FilmsPage = () => {
     const router = useRouter();
     const state = useSelector((state) => state);
     const [disablePagination, setDisablePagination] = React.useState({
-        next: false,
-        prev: false,
+        next: true,
+        prev: true,
         totalData: 0,
     });
     const [films, setFilms] = React.useState(false);
@@ -24,7 +24,7 @@ const FilmsPage = () => {
         setDisablePagination({
             next: true,
             prev: true,
-            totalData: 0,
+            totalData: disablePagination.totalData,
         });
         fetchApi.getFilmsList({ dispatch, params });
     };

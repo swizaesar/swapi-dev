@@ -14,8 +14,9 @@ const StarShipsPage = () => {
     const router = useRouter();
     const state = useSelector((state) => state);
     const [disablePagination, setDisablePagination] = React.useState({
-        next: false,
-        prev: false,
+        next: true,
+        prev: true,
+        totalData: 0,
     });
     const [starShips, setStarShips] = React.useState(false);
     const handleChangePage = (params) => {
@@ -23,6 +24,7 @@ const StarShipsPage = () => {
         setDisablePagination({
             next: true,
             prev: true,
+            totalData: disablePagination.totalData,
         });
         fetchApi.getStarShipList({ dispatch, params });
     };
@@ -40,6 +42,7 @@ const StarShipsPage = () => {
             setDisablePagination({
                 next: state.starships.data.next !== null ? false : true,
                 prev: state.starships.data.previous !== null ? false : true,
+                totalData: state.starships.data.count,
             });
             reduxClear.starShipClear({ dispatch });
         }
@@ -48,13 +51,15 @@ const StarShipsPage = () => {
         <Style>
             <Container>
                 <h2 className="title">Star Ships</h2>
-                <div className="pagination">
-                    <Pagination
-                        disableNext={disablePagination.next}
-                        disablePrev={disablePagination.prev}
-                        handleChangePage={handleChangePage}
-                    />
-                </div>
+                {disablePagination.totalData > 10 && (
+                    <div className="pagination">
+                        <Pagination
+                            disableNext={disablePagination.next}
+                            disablePrev={disablePagination.prev}
+                            handleChangePage={handleChangePage}
+                        />
+                    </div>
+                )}
                 <div>
                     <Row>
                         {starShips ? (

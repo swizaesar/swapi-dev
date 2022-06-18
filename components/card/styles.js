@@ -39,7 +39,7 @@ export const CardStarShipStyle = styled(Card)`
                 color: ${color.primary};
             }
         }
-        @media (max-width: 400px) {
+        @media (max-width: 992px) {
             &-info {
                 &__more {
                     font-size: 12px;
@@ -56,7 +56,7 @@ export const CardStarShipStyle = styled(Card)`
             }
         }
     }
-    @media (max-width: 400px) {
+    @media (max-width: 991px) {
         height: 175px;
         img {
             display: none;

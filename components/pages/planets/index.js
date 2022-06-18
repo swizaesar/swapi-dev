@@ -14,8 +14,9 @@ const PlanetsPage = () => {
     const state = useSelector((state) => state);
     const router = useRouter();
     const [disablePagination, setDisablePagination] = React.useState({
-        next: false,
-        prev: false,
+        next: true,
+        prev: true,
+        totalData: 0,
     });
     const [planets, setPlanets] = React.useState(false);
     const handleChangePage = (params) => {
@@ -23,6 +24,7 @@ const PlanetsPage = () => {
         setDisablePagination({
             next: true,
             prev: true,
+            totalData: disablePagination.totalData,
         });
         fetchApi.getPlanetsList({ dispatch, params });
     };
@@ -39,6 +41,7 @@ const PlanetsPage = () => {
             setDisablePagination({
                 next: state.planets.data.next !== null ? false : true,
                 prev: state.planets.data.previous !== null ? false : true,
+                totalData: state.planets.data.count,
             });
             reduxClear.planetsClear({ dispatch });
         }
@@ -47,13 +50,15 @@ const PlanetsPage = () => {
         <Style>
             <Container>
                 <h2 className="title">Planets</h2>
-                <div className="pagination">
-                    <Pagination
-                        disableNext={disablePagination.next}
-                        disablePrev={disablePagination.prev}
-                        handleChangePage={handleChangePage}
-                    />
-                </div>
+                {disablePagination.totalData > 10 && (
+                    <div className="pagination">
+                        <Pagination
+                            disableNext={disablePagination.next}
+                            disablePrev={disablePagination.prev}
+                            handleChangePage={handleChangePage}
+                        />
+                    </div>
+                )}
                 <div>
                     <Row>
                         {planets ? (

@@ -14,8 +14,9 @@ const PeoplePage = () => {
     const state = useSelector((state) => state);
     const router = useRouter();
     const [disablePagination, setDisablePagination] = React.useState({
-        next: false,
-        prev: false,
+        next: true,
+        prev: true,
+        totalData: 0,
     });
     const [people, setPeople] = React.useState(false);
     const handleChangePage = (params) => {
@@ -23,6 +24,7 @@ const PeoplePage = () => {
         setDisablePagination({
             next: true,
             prev: true,
+            totalData: disablePagination.totalData,
         });
         fetchApi.getPeopleList({ dispatch, params });
     };
@@ -39,6 +41,7 @@ const PeoplePage = () => {
             setDisablePagination({
                 next: state.people.data.next !== null ? false : true,
                 prev: state.people.data.previous !== null ? false : true,
+                totalData: state.people.data.count,
             });
             reduxClear.peopleClear({ dispatch });
         }
@@ -47,13 +50,15 @@ const PeoplePage = () => {
         <Style>
             <Container>
                 <h2 className="title">People</h2>
-                <div className="pagination">
-                    <Pagination
-                        disableNext={disablePagination.next}
-                        disablePrev={disablePagination.prev}
-                        handleChangePage={handleChangePage}
-                    />
-                </div>
+                {disablePagination.totalData > 10 && (
+                    <div className="pagination">
+                        <Pagination
+                            disableNext={disablePagination.next}
+                            disablePrev={disablePagination.prev}
+                            handleChangePage={handleChangePage}
+                        />
+                    </div>
+                )}
                 <div>
                     <Row>
                         {people ? (
