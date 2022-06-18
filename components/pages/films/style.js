@@ -9,6 +9,18 @@ export const Style = styled.div`
     }
 `;
 export const DetailStyle = styled.div`
+    .back {
+        margin-bottom: 30px;
+        font-size: 18px;
+        i {
+            margin-right: 7px;
+        }
+        &:hover {
+            a {
+                color: ${color.primary};
+            }
+        }
+    }
     .info {
         width: 100%;
         border: 2px solid ${color.primary};

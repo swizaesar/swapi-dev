@@ -74,13 +74,13 @@ const FilmsPage = () => {
                             })
                         ) : (
                             <React.Fragment>
-                                <Col sm={12}>
+                                <Col sm={6}>
                                     <SkeletonLoading
                                         height="200px"
                                         style={{ marginBottom: 15 }}
                                     />
                                 </Col>
-                                <Col sm={12}>
+                                <Col sm={6}>
                                     <SkeletonLoading
                                         height="200px"
                                         style={{ marginBottom: 15 }}

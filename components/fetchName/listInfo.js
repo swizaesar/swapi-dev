@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import fetchApi from "../../services/fetchApi";
 import GetPathUrl from "../../utils/getPathUrl";
+import Link from "next/link";
 
 const ListInfo = ({ data, id, length, target, nameObj }) => {
     const dispatch = useDispatch();
@@ -23,10 +24,12 @@ const ListInfo = ({ data, id, length, target, nameObj }) => {
         }
     }, [state]);
     return (
-        <span>
-            {name}
-            {id + 1 < length ? ", " : ""}
-        </span>
+        <Link href={GetPathUrl(data)}>
+            <a>
+                {name}
+                {id + 1 < length ? ", " : ""}
+            </a>
+        </Link>
     );
 };
 export default ListInfo;

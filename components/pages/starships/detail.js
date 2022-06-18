@@ -9,6 +9,7 @@ import { numberConverter } from "../../../utils/numberConverter";
 import moment from "moment";
 import Rating from "../../rating";
 import ListInfo from "../../fetchName/listInfo";
+import Link from "next/link";
 
 const Detail = () => {
     const dispatch = useDispatch();
@@ -33,6 +34,14 @@ const Detail = () => {
                 <Container>
                     <Row className="justify-content-center">
                         <Col md={8}>
+                            <div className="back">
+                                <Link href="/starships">
+                                    <a>
+                                        <i className="fas fa-arrow-left"></i>{" "}
+                                        Back
+                                    </a>
+                                </Link>
+                            </div>
                             <div className="info">
                                 <div className="info-header">
                                     <h2 className="info-title">{data.name}</h2>
