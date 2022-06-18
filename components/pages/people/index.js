@@ -1,15 +1,18 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Container, Row, Col } from "reactstrap";
+import { useRouter } from "next/router";
 import fetchApi from "../../../services/fetchApi";
 import reduxClear from "../../../services/reduxClear";
 import CardPeople from "../../card/cardPeople";
 import Pagination from "../../pagination";
 import SkeletonLoading from "../../skeleton";
-import Style from "./style";
+import { Style } from "./style";
+import GetPathUrl from "../../../utils/getPathUrl";
 const PeoplePage = () => {
     const dispatch = useDispatch();
     const state = useSelector((state) => state);
+    const router = useRouter();
     const [disablePagination, setDisablePagination] = React.useState({
         next: false,
         prev: false,
@@ -22,6 +25,10 @@ const PeoplePage = () => {
             prev: true,
         });
         fetchApi.getPeopleList({ dispatch, params });
+    };
+    const handleShowDetail = (url) => {
+        let asPath = GetPathUrl(url);
+        router.push(asPath);
     };
     React.useEffect(() => {
         fetchApi.getPeopleList({ dispatch });
@@ -53,7 +60,10 @@ const PeoplePage = () => {
                             people.map((item, key) => {
                                 return (
                                     <Col sm={12} key={key}>
-                                        <CardPeople people={item} />
+                                        <CardPeople
+                                            people={item}
+                                            action={handleShowDetail}
+                                        />
                                     </Col>
                                 );
                             })

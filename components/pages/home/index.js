@@ -7,7 +7,7 @@ const HomePage = () => {
         <div>
             <Container>
                 <Row className="justify-content-center">
-                    <Col sm={6}>
+                    <Col md={6}>
                         <Row>
                             {listHome.map((item, key) => {
                                 return (

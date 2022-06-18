@@ -6,5 +6,8 @@ const serviceState = {
     people: false,
 
     starshipDetail: false,
+    planetsDetail: false,
+    peopleDetail: false,
+    filmDetail: false,
 };
 export default serviceState;

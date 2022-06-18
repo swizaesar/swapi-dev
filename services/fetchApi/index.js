@@ -42,11 +42,32 @@ const fetchApi = {
             key: "starshipDetail",
         });
     },
-    getInfoDetail: ({ dispatch, slug, key }) => {
+    getPlanetDetail: ({ dispatch, slug }) => {
+        serviceAction(dispatch).fetchApi({
+            url: `/planets/${slug}`,
+            method: "GET",
+            key: "planetDetail",
+        });
+    },
+    getPeopleDetail: ({ dispatch, slug }) => {
+        serviceAction(dispatch).fetchApi({
+            url: `/people/${slug}`,
+            method: "GET",
+            key: "peopleDetail",
+        });
+    },
+    getFilmDetail: ({ dispatch, slug }) => {
+        serviceAction(dispatch).fetchApi({
+            url: `/films/${slug}`,
+            method: "GET",
+            key: "filmDetail",
+        });
+    },
+    getInfoDetail: ({ dispatch, slug, key, nameObj }) => {
         serviceAction(dispatch).fetchApi({
             url: `${slug}`,
             method: "GET",
-            key: `info_${key}`,
+            key: `info_${nameObj}_${key}`,
         });
     },
 };

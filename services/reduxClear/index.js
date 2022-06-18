@@ -33,5 +33,23 @@ const reduxClear = {
             key: "starshipDetail",
         });
     },
+    planetDetailClear: ({ dispatch }) => {
+        serviceAction(dispatch).reduxClear({
+            type: "CLEAR",
+            key: "planetDetail",
+        });
+    },
+    peopleDetailClear: ({ dispatch }) => {
+        serviceAction(dispatch).reduxClear({
+            type: "CLEAR",
+            key: "peopleDetail",
+        });
+    },
+    filmDetailClear: ({ dispatch }) => {
+        serviceAction(dispatch).reduxClear({
+            type: "CLEAR",
+            key: "filmDetail",
+        });
+    },
 };
 export default reduxClear;

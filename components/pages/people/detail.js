@@ -5,9 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Col, Container, Row } from "reactstrap";
 import { DetailStyle } from "./style";
 import reduxClear from "../../../services/reduxClear";
-import { numberConverter } from "../../../utils/numberConverter";
 import moment from "moment";
-import Rating from "../../rating";
 import ListInfo from "../../fetchName/listInfo";
 
 const Detail = () => {
@@ -18,13 +16,13 @@ const Detail = () => {
     const [data, setData] = React.useState(false);
     React.useEffect(() => {
         if (slug) {
-            fetchApi.getStarShipDetail({ dispatch, slug });
+            fetchApi.getPeopleDetail({ dispatch, slug });
         }
     }, [dispatch, slug]);
     React.useEffect(() => {
-        if (state?.starshipDetail?.isSuccess) {
-            setData(state.starshipDetail.data);
-            reduxClear.starShipDetailClear({ dispatch });
+        if (state?.peopleDetail?.isSuccess) {
+            setData(state.peopleDetail.data);
+            reduxClear.peopleDetailClear({ dispatch });
         }
     }, [state, dispatch]);
     return (
@@ -36,34 +34,33 @@ const Detail = () => {
                             <div className="info">
                                 <div className="info-header">
                                     <h2 className="info-title">{data.name}</h2>
-                                    <Rating rating={data.hyperdrive_rating} />
                                 </div>
                                 <div className="info-group">
                                     <div className="info-group__label">
-                                        Model
+                                        Birth Year
                                     </div>
                                     <div className="info-group__dot">:</div>
                                     <div className="info-group__value">
-                                        {data.model}
+                                        {data.birth_year}
                                     </div>
                                 </div>
                                 <div className="info-group">
                                     <div className="info-group__label">
-                                        Starship Class
+                                        Gender
                                     </div>
                                     <div className="info-group__dot">:</div>
                                     <div className="info-group__value">
-                                        {data.starship_class}
+                                        {data.gender}
                                     </div>
                                 </div>
 
                                 <div className="info-group">
                                     <div className="info-group__label">
-                                        Manufacturer
+                                        Height
                                     </div>
                                     <div className="info-group__dot">:</div>
                                     <div className="info-group__value">
-                                        {data.manufacturer}
+                                        {data.height}
                                     </div>
                                 </div>
                                 <div className="info-group">
@@ -93,48 +90,47 @@ const Detail = () => {
 
                                 <div className="info-group">
                                     <div className="info-group__label">
-                                        Cost in Credits
+                                        Hair Color
                                     </div>
                                     <div className="info-group__dot">:</div>
                                     <div className="info-group__value">
-                                        {numberConverter(data.cost_in_credits)}
+                                        {data.hair_color}
                                     </div>
                                 </div>
                                 <div className="info-group">
                                     <div className="info-group__label">
-                                        Cargo Capacity
+                                        Skin Color
                                     </div>
                                     <div className="info-group__dot">:</div>
                                     <div className="info-group__value">
-                                        {numberConverter(data.cargo_capacity)}
+                                        {data.skin_color}
                                     </div>
                                 </div>
                                 <div className="info-group">
                                     <div className="info-group__label">
-                                        Consumables
+                                        Star Ship
                                     </div>
                                     <div className="info-group__dot">:</div>
                                     <div className="info-group__value">
-                                        {data.consumables}
-                                    </div>
-                                </div>
-                                <div className="info-group">
-                                    <div className="info-group__label">
-                                        Crew
-                                    </div>
-                                    <div className="info-group__dot">:</div>
-                                    <div className="info-group__value">
-                                        {data.crew}
-                                    </div>
-                                </div>
-
-                                <div className="info-group">
-                                    <div className="info-group__label">
-                                        Passengers
-                                    </div>
-                                    <div className="info-group__dot">:</div>
-                                    <div className="info-group__value">
-                                        {numberConverter(data.passengers)}
+                                        {data.starships.length > 0
+                                            ? data.starships.map(
+                                                  (item, key) => {
+                                                      return (
+                                                          <ListInfo
+                                                              nameObj="starships"
+                                                              data={item}
+                                                              key={key}
+                                                              id={key}
+                                                              target="name"
+                                                              length={
+                                                                  data.starships
+                                                                      .length
+                                                              }
+                                                          />
+                                                      );
+                                                  }
+                                              )
+                                            : "-"}
                                     </div>
                                 </div>
                                 <div className="info-group">

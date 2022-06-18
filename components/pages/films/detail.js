@@ -5,9 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Col, Container, Row } from "reactstrap";
 import { DetailStyle } from "./style";
 import reduxClear from "../../../services/reduxClear";
-import { numberConverter } from "../../../utils/numberConverter";
 import moment from "moment";
-import Rating from "../../rating";
 import ListInfo from "../../fetchName/listInfo";
 
 const Detail = () => {
@@ -18,13 +16,13 @@ const Detail = () => {
     const [data, setData] = React.useState(false);
     React.useEffect(() => {
         if (slug) {
-            fetchApi.getStarShipDetail({ dispatch, slug });
+            fetchApi.getFilmDetail({ dispatch, slug });
         }
     }, [dispatch, slug]);
     React.useEffect(() => {
-        if (state?.starshipDetail?.isSuccess) {
-            setData(state.starshipDetail.data);
-            reduxClear.starShipDetailClear({ dispatch });
+        if (state?.filmDetail?.isSuccess) {
+            setData(state.filmDetail.data);
+            reduxClear.filmDetailClear({ dispatch });
         }
     }, [state, dispatch]);
     return (
@@ -35,54 +33,59 @@ const Detail = () => {
                         <Col md={8}>
                             <div className="info">
                                 <div className="info-header">
-                                    <h2 className="info-title">{data.name}</h2>
-                                    <Rating rating={data.hyperdrive_rating} />
+                                    <h2 className="info-title">{data.title}</h2>
                                 </div>
                                 <div className="info-group">
-                                    <div className="info-group__label">
-                                        Model
-                                    </div>
-                                    <div className="info-group__dot">:</div>
-                                    <div className="info-group__value">
-                                        {data.model}
+                                    <div className="info-group__desc">
+                                        {data.opening_crawl}
                                     </div>
                                 </div>
                                 <div className="info-group">
                                     <div className="info-group__label">
-                                        Starship Class
+                                        Director
                                     </div>
                                     <div className="info-group__dot">:</div>
                                     <div className="info-group__value">
-                                        {data.starship_class}
+                                        {data.director}
+                                    </div>
+                                </div>
+                                <div className="info-group">
+                                    <div className="info-group__label">
+                                        Producer
+                                    </div>
+                                    <div className="info-group__dot">:</div>
+                                    <div className="info-group__value">
+                                        {data.producer}
                                     </div>
                                 </div>
 
                                 <div className="info-group">
                                     <div className="info-group__label">
-                                        Manufacturer
+                                        Release Date
                                     </div>
                                     <div className="info-group__dot">:</div>
                                     <div className="info-group__value">
-                                        {data.manufacturer}
+                                        {data.release_date}
                                     </div>
                                 </div>
                                 <div className="info-group">
                                     <div className="info-group__label">
-                                        Films
+                                        Planets
                                     </div>
                                     <div className="info-group__dot">:</div>
                                     <div className="info-group__value">
-                                        {data.films.length > 0
-                                            ? data.films.map((item, key) => {
+                                        {data.planets.length > 0
+                                            ? data.planets.map((item, key) => {
                                                   return (
                                                       <ListInfo
-                                                          nameObj="films"
+                                                          nameObj="planets"
                                                           data={item}
                                                           key={key}
                                                           id={key}
-                                                          target="title"
+                                                          target="name"
                                                           length={
-                                                              data.films.length
+                                                              data.planets
+                                                                  .length
                                                           }
                                                       />
                                                   );
@@ -93,48 +96,29 @@ const Detail = () => {
 
                                 <div className="info-group">
                                     <div className="info-group__label">
-                                        Cost in Credits
+                                        Star Ship
                                     </div>
                                     <div className="info-group__dot">:</div>
                                     <div className="info-group__value">
-                                        {numberConverter(data.cost_in_credits)}
-                                    </div>
-                                </div>
-                                <div className="info-group">
-                                    <div className="info-group__label">
-                                        Cargo Capacity
-                                    </div>
-                                    <div className="info-group__dot">:</div>
-                                    <div className="info-group__value">
-                                        {numberConverter(data.cargo_capacity)}
-                                    </div>
-                                </div>
-                                <div className="info-group">
-                                    <div className="info-group__label">
-                                        Consumables
-                                    </div>
-                                    <div className="info-group__dot">:</div>
-                                    <div className="info-group__value">
-                                        {data.consumables}
-                                    </div>
-                                </div>
-                                <div className="info-group">
-                                    <div className="info-group__label">
-                                        Crew
-                                    </div>
-                                    <div className="info-group__dot">:</div>
-                                    <div className="info-group__value">
-                                        {data.crew}
-                                    </div>
-                                </div>
-
-                                <div className="info-group">
-                                    <div className="info-group__label">
-                                        Passengers
-                                    </div>
-                                    <div className="info-group__dot">:</div>
-                                    <div className="info-group__value">
-                                        {numberConverter(data.passengers)}
+                                        {data.starships.length > 0
+                                            ? data.starships.map(
+                                                  (item, key) => {
+                                                      return (
+                                                          <ListInfo
+                                                              nameObj="starships"
+                                                              data={item}
+                                                              key={key}
+                                                              id={key}
+                                                              target="name"
+                                                              length={
+                                                                  data.starships
+                                                                      .length
+                                                              }
+                                                          />
+                                                      );
+                                                  }
+                                              )
+                                            : "-"}
                                     </div>
                                 </div>
                                 <div className="info-group">

@@ -2,7 +2,7 @@ import React from "react";
 import { CardFilmStyle } from "./styles";
 import Button from "../button";
 
-const CardFilm = ({ film }) => {
+const CardFilm = ({ film, action = () => {} }) => {
     return (
         <CardFilmStyle>
             <div className="film">
@@ -21,7 +21,12 @@ const CardFilm = ({ film }) => {
                     </div>
                 </div>
                 <div className="film-action">
-                    <Button size={"16px"} color="outline-primary" block>
+                    <Button
+                        onClick={() => action(film.url)}
+                        size={"16px"}
+                        color="outline-primary"
+                        block
+                    >
                         More Info
                     </Button>
                 </div>

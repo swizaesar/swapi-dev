@@ -3,13 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { Container, Row, Col } from "reactstrap";
 import fetchApi from "../../../services/fetchApi";
 import reduxClear from "../../../services/reduxClear";
+import GetPathUrl from "../../../utils/getPathUrl";
 import CardPlanet from "../../card/cardPlanet";
+import { useRouter } from "next/router";
 import Pagination from "../../pagination";
 import SkeletonLoading from "../../skeleton";
-import Style from "./style";
+import { Style } from "./style";
 const PlanetsPage = () => {
     const dispatch = useDispatch();
     const state = useSelector((state) => state);
+    const router = useRouter();
     const [disablePagination, setDisablePagination] = React.useState({
         next: false,
         prev: false,
@@ -22,6 +25,10 @@ const PlanetsPage = () => {
             prev: true,
         });
         fetchApi.getPlanetsList({ dispatch, params });
+    };
+    const handleShowDetail = (url) => {
+        let asPath = GetPathUrl(url);
+        router.push(asPath);
     };
     React.useEffect(() => {
         fetchApi.getPlanetsList({ dispatch });
@@ -53,7 +60,10 @@ const PlanetsPage = () => {
                             planets.map((item, key) => {
                                 return (
                                     <Col sm={12} key={key}>
-                                        <CardPlanet planet={item} />
+                                        <CardPlanet
+                                            planet={item}
+                                            action={handleShowDetail}
+                                        />
                                     </Col>
                                 );
                             })

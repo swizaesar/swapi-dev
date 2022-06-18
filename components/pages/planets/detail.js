@@ -7,7 +7,6 @@ import { DetailStyle } from "./style";
 import reduxClear from "../../../services/reduxClear";
 import { numberConverter } from "../../../utils/numberConverter";
 import moment from "moment";
-import Rating from "../../rating";
 import ListInfo from "../../fetchName/listInfo";
 
 const Detail = () => {
@@ -18,13 +17,13 @@ const Detail = () => {
     const [data, setData] = React.useState(false);
     React.useEffect(() => {
         if (slug) {
-            fetchApi.getStarShipDetail({ dispatch, slug });
+            fetchApi.getPlanetDetail({ dispatch, slug });
         }
     }, [dispatch, slug]);
     React.useEffect(() => {
-        if (state?.starshipDetail?.isSuccess) {
-            setData(state.starshipDetail.data);
-            reduxClear.starShipDetailClear({ dispatch });
+        if (state?.planetDetail?.isSuccess) {
+            setData(state.planetDetail.data);
+            reduxClear.planetDetailClear({ dispatch });
         }
     }, [state, dispatch]);
     return (
@@ -36,34 +35,33 @@ const Detail = () => {
                             <div className="info">
                                 <div className="info-header">
                                     <h2 className="info-title">{data.name}</h2>
-                                    <Rating rating={data.hyperdrive_rating} />
                                 </div>
                                 <div className="info-group">
                                     <div className="info-group__label">
-                                        Model
+                                        Diameter
                                     </div>
                                     <div className="info-group__dot">:</div>
                                     <div className="info-group__value">
-                                        {data.model}
+                                        {numberConverter(data.diameter)}
                                     </div>
                                 </div>
                                 <div className="info-group">
                                     <div className="info-group__label">
-                                        Starship Class
+                                        Climate
                                     </div>
                                     <div className="info-group__dot">:</div>
                                     <div className="info-group__value">
-                                        {data.starship_class}
+                                        {data.climate}
                                     </div>
                                 </div>
 
                                 <div className="info-group">
                                     <div className="info-group__label">
-                                        Manufacturer
+                                        Gravity
                                     </div>
                                     <div className="info-group__dot">:</div>
                                     <div className="info-group__value">
-                                        {data.manufacturer}
+                                        {data.gravity}
                                     </div>
                                 </div>
                                 <div className="info-group">
@@ -93,48 +91,48 @@ const Detail = () => {
 
                                 <div className="info-group">
                                     <div className="info-group__label">
-                                        Cost in Credits
+                                        Population
                                     </div>
                                     <div className="info-group__dot">:</div>
                                     <div className="info-group__value">
-                                        {numberConverter(data.cost_in_credits)}
+                                        {numberConverter(data.population)}
                                     </div>
                                 </div>
                                 <div className="info-group">
                                     <div className="info-group__label">
-                                        Cargo Capacity
+                                        Orbital Period
                                     </div>
                                     <div className="info-group__dot">:</div>
                                     <div className="info-group__value">
-                                        {numberConverter(data.cargo_capacity)}
+                                        {numberConverter(data.orbital_period)}
                                     </div>
                                 </div>
                                 <div className="info-group">
                                     <div className="info-group__label">
-                                        Consumables
+                                        Rotation Period
                                     </div>
                                     <div className="info-group__dot">:</div>
                                     <div className="info-group__value">
-                                        {data.consumables}
+                                        {data.rotation_period}
                                     </div>
                                 </div>
                                 <div className="info-group">
                                     <div className="info-group__label">
-                                        Crew
+                                        Terrain
                                     </div>
                                     <div className="info-group__dot">:</div>
                                     <div className="info-group__value">
-                                        {data.crew}
+                                        {data.terrain}
                                     </div>
                                 </div>
 
                                 <div className="info-group">
                                     <div className="info-group__label">
-                                        Passengers
+                                        Surface Water
                                     </div>
                                     <div className="info-group__dot">:</div>
                                     <div className="info-group__value">
-                                        {numberConverter(data.passengers)}
+                                        {numberConverter(data.surface_water)}
                                     </div>
                                 </div>
                                 <div className="info-group">

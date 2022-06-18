@@ -2,7 +2,7 @@ import React from "react";
 import { CardPlanetStyle } from "./styles";
 import Button from "../button";
 
-const CardPlanet = ({ planet }) => {
+const CardPlanet = ({ planet, action = () => {} }) => {
     return (
         <CardPlanetStyle>
             <img
@@ -27,7 +27,11 @@ const CardPlanet = ({ planet }) => {
                     </div>
                 </div>
                 <div className="planet-action">
-                    <Button size={"16px"} color="outline-primary">
+                    <Button
+                        onClick={() => action(planet.url)}
+                        size={"16px"}
+                        color="outline-primary"
+                    >
                         More Info
                     </Button>
                 </div>

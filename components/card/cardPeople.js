@@ -2,7 +2,7 @@ import React from "react";
 import { CardPeopleStyle } from "./styles";
 import Button from "../button";
 
-const CardPeople = ({ people }) => {
+const CardPeople = ({ people, action = () => {} }) => {
     return (
         <CardPeopleStyle>
             <img
@@ -27,7 +27,11 @@ const CardPeople = ({ people }) => {
                     </div>
                 </div>
                 <div className="people-action">
-                    <Button size={"16px"} color="outline-primary">
+                    <Button
+                        onClick={() => action(people.url)}
+                        size={"16px"}
+                        color="outline-primary"
+                    >
                         More Info
                     </Button>
                 </div>

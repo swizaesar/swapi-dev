@@ -1,14 +1,17 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Container, Row, Col } from "reactstrap";
+import { useRouter } from "next/router";
 import fetchApi from "../../../services/fetchApi";
 import reduxClear from "../../../services/reduxClear";
 import CardFilm from "../../card/cardFilm";
 import Pagination from "../../pagination";
 import SkeletonLoading from "../../skeleton";
-import Style from "./style";
+import { Style } from "./style";
+import GetPathUrl from "../../../utils/getPathUrl";
 const FilmsPage = () => {
     const dispatch = useDispatch();
+    const router = useRouter();
     const state = useSelector((state) => state);
     const [disablePagination, setDisablePagination] = React.useState({
         next: false,
@@ -24,6 +27,10 @@ const FilmsPage = () => {
             totalData: 0,
         });
         fetchApi.getFilmsList({ dispatch, params });
+    };
+    const handleShowDetail = (url) => {
+        let asPath = GetPathUrl(url);
+        router.push(asPath);
     };
     React.useEffect(() => {
         fetchApi.getFilmsList({ dispatch });
@@ -58,7 +65,10 @@ const FilmsPage = () => {
                             films.map((item, key) => {
                                 return (
                                     <Col sm={6} key={key}>
-                                        <CardFilm film={item} />
+                                        <CardFilm
+                                            film={item}
+                                            action={handleShowDetail}
+                                        />
                                     </Col>
                                 );
                             })

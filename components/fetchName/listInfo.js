@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import fetchApi from "../../services/fetchApi";
 import GetPathUrl from "../../utils/getPathUrl";
 
-const ListFilms = ({ data, id, length, target }) => {
+const ListInfo = ({ data, id, length, target, nameObj }) => {
     const dispatch = useDispatch();
     const state = useSelector((state) => state);
     const [name, setName] = React.useState("-");
@@ -13,12 +13,13 @@ const ListFilms = ({ data, id, length, target }) => {
                 dispatch,
                 slug: GetPathUrl(data),
                 key: id,
+                nameObj: nameObj,
             });
         }
     }, [data]);
     React.useEffect(() => {
-        if (state[`info_${id}`]?.isSuccess) {
-            setName(state[`info_${id}`].data[target]);
+        if (state[`info_${nameObj}_${id}`]?.isSuccess) {
+            setName(state[`info_${nameObj}_${id}`].data[target]);
         }
     }, [state]);
     return (
@@ -28,4 +29,4 @@ const ListFilms = ({ data, id, length, target }) => {
         </span>
     );
 };
-export default ListFilms;
+export default ListInfo;

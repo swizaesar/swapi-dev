@@ -26,6 +26,7 @@ const StarShipsPage = () => {
         });
         fetchApi.getStarShipList({ dispatch, params });
     };
+
     const handleShowDetail = (url) => {
         let asPath = GetPathUrl(url);
         router.push(asPath);
